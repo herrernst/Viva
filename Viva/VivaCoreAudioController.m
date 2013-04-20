@@ -110,6 +110,12 @@ static OSStatus EQRenderCallback(void *inRefCon,
 		self.pluginHost = [iTunesPluginHost new];
 		// Since visualizer loading is async, we set the default when they change
 	}
+    
+    for (SPCoreAudioDevice *audioDevice in self.availableOutputDevices) {
+        if ([audioDevice.UID isEqualToString:@"AirPlay"]) {
+            self.currentOutputDevice = audioDevice;
+        }
+    }
 	
 	return self;
 }
